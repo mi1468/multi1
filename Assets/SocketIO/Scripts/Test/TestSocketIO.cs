@@ -71,6 +71,7 @@ public class TestSocketIO : MonoBehaviour
     }
     void Update()
     {
+        return;
         test = "{\"Name\" = \"ali\",\"kod\" = 12}";
         JSONObject myjs = new JSONObject(test);
        // print(VectorToJson(transform.position));

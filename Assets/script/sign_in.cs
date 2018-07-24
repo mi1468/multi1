@@ -5,7 +5,7 @@ using SocketIO;
 using UnityEngine.UI;
 
 public class sign_in : MonoBehaviour {
-  
+    public GameObject wrong_uandp, menu_panel;
     public string matn, email, name, pasword;
     public InputField  in_email, in_pasword;
     private SocketIOComponent socket;
@@ -31,10 +31,10 @@ public class sign_in : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-
+        wrong_uandp.SetActive(false);
         GameObject go = GameObject.Find("SocketIO");
         socket = go.GetComponent<SocketIOComponent>();
-       
+        socket.On("wrong_up", wrong_uandp_on);
     }
 	
 	
@@ -50,5 +50,19 @@ public class sign_in : MonoBehaviour {
         pasword = Md5Sum(pasword + "hehe");
         matn = "{\"email\":\"" + email + "\",\"pasword\":\"" + pasword + "\"}";
         socket.Emit("sign_in", new JSONObject(matn));
+    }
+    private void wrong_uandp_on(SocketIOEvent e)
+    {
+        wrong_uandp.SetActive(true);
+    }
+    public void ok_btn_wornguandp()
+    {
+        wrong_uandp.SetActive(false);
+
+    }
+    public void back_btn()
+    {
+        menu_panel.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

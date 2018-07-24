@@ -5,7 +5,7 @@ using SocketIO;
 using UnityEngine.UI;
 
 public class sign_up : MonoBehaviour {
-    public GameObject email_tekrari_panel;
+    public GameObject email_tekrari_panel,menu_panel;
     public InputField in_name,in_email,in_pasword;
     public string matn,email,name,pasword;
     private SocketIOComponent socket;
@@ -40,6 +40,11 @@ public class sign_up : MonoBehaviour {
     public void email_tekrari_btn()
     {
         email_tekrari_panel.SetActive(false);
+    }
+    public void back_btn()
+    {
+        menu_panel.SetActive(true);
+        gameObject.SetActive(false);
     }
     public string Md5Sum(string strToEncrypt)
     {
